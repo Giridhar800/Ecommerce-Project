@@ -20,7 +20,7 @@ Our e-commerce website aims to provide users with a seamless online shopping exp
 1. Clone the repository from GitHub:
    - git clone https://github.com/Giridhar800/Ecommerce-Project.git
 2. Navigate to the project directory:
-   - cd e-commerce-website
+   - cd ec
 3. Install dependencies:
    - pip install -r requirements.txt
 4. Run migrations:
