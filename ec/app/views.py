@@ -329,26 +329,35 @@ def remove_cart(request):
         return JsonResponse(data)
     
 def plus_wishlist(request):
-    if request.method == "GEt":
-        prod_id=request.Get['prod_id']
-        product=Product.objects.get(id=prod_id)
-        user=request.user
-        Wishlist(user=user,product=product).save()
-        data={
-            'message':"Wishlist Added Successfully",
+    if request.method == "GET":
+        prod_id = request.GET.get('prod_id')
+        product = Product.objects.get(id=prod_id)
+        user = request.user
+        exists = Wishlist.objects.filter(user=user, product=product).exists()
+        if not exists:
+            Wishlist(user=user, product=product).save()
+            status = 'added'
+        else:
+            status = 'exists'
+        data = {
+            'status': status,
         }
         return JsonResponse(data)
     
 def minus_wishlist(request):
-    if request.method == "GEt":
-        prod_id=request.Get['prod_id']
-        product=Product.objects.get(id=prod_id)
-        user=request.user
-        Wishlist.objects.filter(user=user,product=product).delete()
-        data={
-            'message':"Wishlist Remove Successfully",
-        }
-        return JsonResponse(data)
+    if request.method == "POST":
+        prod_id = request.POST.get('prod_id')
+        if not prod_id:
+            return JsonResponse({'status': 'error', 'message': 'Product ID not provided'}, status=400)
+        try:
+            product = Product.objects.get(id=prod_id)
+        except Product.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Product not found'}, status=404)
+        user = request.user
+        Wishlist.objects.filter(user=user, product=product).delete()
+        from django.http import HttpResponse
+        return HttpResponse(status=204)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
     
 
 @login_required    

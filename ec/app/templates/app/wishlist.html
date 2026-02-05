@@ -19,6 +19,11 @@
                                 </div>
                             </div>
                         </a>
+                        <form method="post" action="{% url 'minuswishlist' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="prod_id" value="{{ prod.product.id }}">
+                            <button type="submit" class="btn btn-danger mt-2">Remove from Wishlist</button>
+                        </form>
                     </div>
                     {% endfor %}
                 </div>
