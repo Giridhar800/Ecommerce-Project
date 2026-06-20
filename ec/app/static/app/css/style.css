@@ -1,16 +1,29 @@
+.goodnessseccont {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    min-height:280px;
+    text-align:center;
+}
+
 .goodnessseccont img{
-    width:100%;
+    max-width:100%;
+    width:auto;
+    height:auto;
+    display:block;
+    margin:0 auto 20px;
 }
 
 .buttermilk{
-    background-color:#fff;background-image: linear-gradient(#fff7ef,#fff);
+    background-color:#fff;
+    background-image: linear-gradient(#fff7ef,#fff);
     background-image:-webkit-linear-gradient(#fff7ef,#fff);
     background-image:-moz-linear-gradient(#fff7ef,#fff);
     background-image:-ms-linear-gradient(#fff7ef,#fff);
     background-image:-o-linear-gradient(#fff7ef,#fff);
-    padding:50px40px;
+    padding:50px 40px 20px;
     border:1px solid #efe8e1;
-    padding-bottom:20px;
 }
 .smbg{
     background-color:#fff;
@@ -33,10 +46,9 @@
 .mlkpro{
     color: #636362;
     font-size:22px;
-    line-height:22px;
+    line-height:1.3;
     margin-bottom:15px;
-    width:43%;
-    margin:0 auto;
+    width:auto;
     text-align:center;
 }
 
